@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css">
+    <title>Document</title>
+  </head>
+  <body style="background-color: aquamarine;">
+    <center>
+      <div class="dii">
+      <div class="di"><br>
+        <input type="text" id="info" placeholder=" id" / class="di2">
+        <br />
+        <input type="password" id="password" placeholder=" password" / class="di3">
+        <br />
+        <input type="text" id="name" placeholder=" name" / class="di3">
+        <br />
+        <input type="text" id="gmail" placeholder=" gmail" / class="di3">
+        <br />
+        <input type="text" id="phone" placeholder=" phone" / class="di3"><br>
+        <button id="btn" class="di4">signup</button>
+        <br /><br />
+      </div>
+    </center>
+    <script>
+      var button = document.getElementById("btn");
+      button.addEventListener("click", () => {
+        fetch("http://localhost:3000/signup", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            id: document.getElementById("info").value,
+            pass: document.getElementById("password").value,
+            name: document.getElementById("name").value,
+            gmail: document.getElementById("gmail").value,
+            phone: document.getElementById("phone").value,
+          }),
+        })
+          .then((res) => res.json())
+          .then((data) => console.log(data.users));
+      });
+    </script>
+     
+  </body>
+</html>
