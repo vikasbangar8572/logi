@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <input type="text" id="id" placeholder=" id" /><br />
+      <input type="text" id="pass" placeholder=" pass" /><br />
+      <input type="text" id="newpass" placeholder=" newpass" />
+      <button id="btn" class="di4">signup</button>
+    </div>
+    <script>
+      const passchange = document.getElementById("btn");
+      passchange.addEventListener("click", () => {
+        fetch("http://localhost:3000/forgetpassword", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            id: document.getElementById("id").value,
+            name: document.getElementById("pass").value,
+            newpass: document.getElementById("newpass").value,
+          }),
+        })
+          .then((res) => res.json())
+          .then((data) => console.log(data));
+      });
+    </script>
+  </body>
+</html>
